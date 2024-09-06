@@ -1,0 +1,3 @@
+rootProject.name = 'groovycourse'
+include 'hw01-gradle'
+

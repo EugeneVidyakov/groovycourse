@@ -1,0 +1,36 @@
+plugins {
+    id 'groovy'
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy-all:3.0.19'
+    implementation 'com.google.guava:guava:33.3.0-jre'
+    testImplementation 'junit:junit:4.13.2'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'org.example.HelloOtus'
+        )
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+    archiveBaseName.set('hw01-gradle')
+    archiveVersion.set('1.0.0')
+}
+
+
+
+test {
+    useJUnitPlatform()
+}
